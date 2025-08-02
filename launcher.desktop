@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Name = Scheduler
+Exec = /usr/bin/python3 /home/[...abs path to start.py]/python_scheduler/start.py
+Version = 1.0 
+Icon = /home/[...abs path to start.py]/python_scheduler/scheduler.ico
+Type = Application
+NoDisplay=false
+#Categories=Games

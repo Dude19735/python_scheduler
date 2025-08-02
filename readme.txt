@@ -4,6 +4,11 @@ Install Python
 2. download and install Python >= 3.10 (=> on Windows: advisable to install Python on C: drive)
 
 
+Make Startmenu entry in Ubuntu
+==============================
+1. replace '[...abs path to start.py]' with the path to start.py
+2. move launcher.desktop to '/usr/local/share/applications'
+
 
 Install missing modules
 =======================
