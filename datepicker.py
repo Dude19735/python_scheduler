@@ -4,6 +4,7 @@ date, ok and cancel buttons
 """
 
 from datetime import date
+import os
 from PyQt6.QtCore import Qt, pyqtSlot, QDate, QSize, QPoint
 from PyQt6.QtGui import QIcon, QFont
 from PyQt6.QtWidgets import QWidget, QCalendarWidget, QPushButton, QSpacerItem
@@ -18,6 +19,9 @@ class DatePickerHead(QWidget):
 
     def __init__(self, communicator, context, parent):
         super().__init__()
+        location = os.path.dirname(os.path.realpath(__file__))
+        img_location = "{0}/img".format(location )
+
         self.communicator = communicator
         self.context = context
         self.parent = parent
@@ -39,7 +43,7 @@ class DatePickerHead(QWidget):
 
         button = QPushButton()
         button.setIconSize(QSize(height-2, height-2))
-        button.setIcon(QIcon("./img/datepicker.png"))
+        button.setIcon(QIcon("{0}/{1}".format(img_location, "datepicker.png")))
         button.setFixedSize(height, height)
         button.setStyleSheet("background-color: white")
         button.setFlat(True)

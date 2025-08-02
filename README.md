@@ -19,6 +19,10 @@ This is a tool to plan and track study times. It works on Windows and Linux and 
 - on Windows run start_scheduler.bat
 - on Windows cd to folder containing files and type in cmd.exe: python.exe -OO start.py
 
+#### Make Startmenu entry in Ubuntu
+- replace '[...abs path to start.py]' with the path to start.py
+- move launcher.desktop to '/usr/local/share/applications'
+
 #### Verify
 The program should look like this:
 

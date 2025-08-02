@@ -5,6 +5,7 @@ Module represents the timer window
 """
 
 import math
+import os
 from datetime import datetime, date
 from PyQt6.QtWidgets import QLabel, QWidget, QDialog
 from PyQt6.QtWidgets import QHBoxLayout, QVBoxLayout, QPushButton
@@ -270,6 +271,8 @@ class Timer(QWidget):
         return layout
 
     def __init__(self, communicator, context):
+        location = os.path.dirname(os.path.realpath(__file__))
+        img_location = "{0}/img".format(location )
         super().__init__()
         self.loaded = False
 
@@ -283,7 +286,7 @@ class Timer(QWidget):
 
         # dismiss button -----------------
         self.dismiss_button = QPushButton()
-        self.dismiss_button.setIcon(QIcon("./img/dismiss.png"))
+        self.dismiss_button.setIcon(QIcon("{0}/{1}".format(img_location,"dismiss.png")))
         self.dismiss_button.setFixedSize(int(self.context.control_button_width/2),\
             int(self.context.control_button_width/2))
         self.dismiss_button.setFlat(True)
@@ -295,7 +298,7 @@ class Timer(QWidget):
 
         # date and config -----------------
         self.date_button = QPushButton()
-        self.date_button.setIcon(QIcon("./img/datepicker.png"))
+        self.date_button.setIcon(QIcon("{0}/{1}".format(img_location,"datepicker.png")))
         self.date_button.setIconSize(QSize(\
             self.context.control_button_icon_width,\
                 self.context.control_button_icon_width))
@@ -310,7 +313,7 @@ class Timer(QWidget):
             self.enable_date_button_slot)
 
         self.config_button = QPushButton()
-        self.config_button.setIcon(QIcon("./img/open_config.png"))
+        self.config_button.setIcon(QIcon("{0}/{1}".format(img_location,"open_config.png")))
         self.config_button.setIconSize(QSize(\
             self.context.control_button_icon_width,\
                 self.context.control_button_icon_width))
@@ -406,7 +409,7 @@ class Timer(QWidget):
         self.stop_button.setIconSize(QSize(\
             self.context.control_button_icon_width,\
                 self.context.control_button_icon_width))
-        self.stop_button.setIcon(QIcon("./img/stop.png"))
+        self.stop_button.setIcon(QIcon("{0}/{1}".format(img_location,"stop.png")))
         self.stop_button.setFixedSize(\
             self.context.control_button_width,\
                 self.context.control_button_width)
@@ -430,7 +433,7 @@ class Timer(QWidget):
         self.work_button.setIconSize(QSize(\
             self.context.button_icon_width,\
                 self.context.button_icon_height))
-        self.work_button.setIcon(QIcon("./img/work.png"))
+        self.work_button.setIcon(QIcon("{0}/{1}".format(img_location,"work.png")))
         self.work_button.setFixedSize(self.context.button_width, self.context.button_height)
         self.work_button.setFlat(True)
         self.work_button.clicked.connect(self.work_button_clicked)
@@ -452,7 +455,7 @@ class Timer(QWidget):
         self.break_button.setIconSize(QSize(\
             self.context.button_icon_width,\
                 self.context.button_icon_height))
-        self.break_button.setIcon(QIcon("./img/break.png"))
+        self.break_button.setIcon(QIcon("{0}/{1}".format(img_location,"break.png")))
         self.break_button.setFixedSize(self.context.button_width, self.context.button_height)
         self.break_button.setFlat(True)
         self.break_button.clicked.connect(self.break_button_clicked)
@@ -474,7 +477,7 @@ class Timer(QWidget):
         self.coffee_button.setIconSize(QSize(\
             self.context.button_icon_width,\
                 self.context.button_icon_height))
-        self.coffee_button.setIcon(QIcon("./img/coffee.png"))
+        self.coffee_button.setIcon(QIcon("{0}/{1}".format(img_location,"coffee.png")))
         self.coffee_button.setFixedSize(self.context.button_width, self.context.button_height)
         self.coffee_button.setFlat(True)
         self.coffee_button.clicked.connect(self.coffee_button_clicked)
@@ -541,7 +544,7 @@ class Timer(QWidget):
         self.setLayout(hbox)
 
         self.setWindowTitle("  ")
-        self.setWindowIcon(QIcon("./img/title.png"))
+        self.setWindowIcon(QIcon("{0}/{1}".format(img_location,"title.png")))
 
         # first assume that we don't want to show config window by default
         self.show_config_widget = False
@@ -831,8 +834,11 @@ class Timer(QWidget):
 
         """display config window slot"""
 
+        location = os.path.dirname(os.path.realpath(__file__))
+        img_location = "{0}/img".format(location )
+
         if not self.show_config_widget:
-            self.config_button.setIcon(QIcon("./img/close_config.png"))
+            self.config_button.setIcon(QIcon("{0}/{1}".format(img_location,"close_config.png")))
             self.config_button.setIconSize(QSize(\
                 self.context.control_button_icon_width,\
                     self.context.control_button_icon_width))
@@ -852,7 +858,7 @@ class Timer(QWidget):
             # then reset the minimum size to 0 to have a totally resizable window
             self.setMinimumSize(0, 0)
         else:
-            self.config_button.setIcon(QIcon("./img/open_config.png"))
+            self.config_button.setIcon(QIcon("{0}/{1}".format(img_location,"open_config.png")))
             self.config_button.setIconSize(QSize(\
                 self.context.control_button_icon_width,\
                     self.context.control_button_icon_width))

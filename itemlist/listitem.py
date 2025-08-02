@@ -2,6 +2,7 @@
 Module offers list item with specific moving area
 """
 
+import os
 from PyQt6.QtWidgets import QWidget, QLabel
 from PyQt6.QtWidgets import QHBoxLayout, QPushButton
 from PyQt6.QtGui import QIcon
@@ -18,6 +19,8 @@ class ListItem(QWidget):
         list_item_obj, communicator, context, parent):
 
         super().__init__(parent=parent)
+        location = os.path.dirname(os.path.realpath(__file__))
+        img_location = "{0}/img".format(location )
         self.parent = parent
         self.communicator = communicator
         self.context = context
@@ -40,9 +43,9 @@ class ListItem(QWidget):
         self.check_button.setFixedSize(height, height)
         self.check_button.setIconSize(QSize(height-4, height-4))
         if self.task_complete:
-            self.check_button.setIcon(QIcon("./img/check.png"))
+            self.check_button.setIcon(QIcon("{0}/{1}".format(img_location,"check.png")))
         else:
-            self.check_button.setIcon(QIcon("./img/todo.png"))
+            self.check_button.setIcon(QIcon("{0}/{1}".format(img_location,"todo.png")))
         self.check_button.setStyleSheet(
             """
             background-color: white;
@@ -72,13 +75,15 @@ class ListItem(QWidget):
 
         """handle check event, remove current item from list"""
 
+        location = os.path.dirname(os.path.realpath(__file__))
+        img_location = "{0}/img".format(location )
         self.task_complete = not self.task_complete
 
         if self.task_complete:
-            self.check_button.setIcon(QIcon("./img/check.png"))
+            self.check_button.setIcon(QIcon("{0}/{1}".format(img_location,"check.png")))
             self.list_item_obj.task_complete = 1
         else:
-            self.check_button.setIcon(QIcon("./img/todo.png"))
+            self.check_button.setIcon(QIcon("{0}/{1}".format(img_location,"todo.png")))
             self.list_item_obj.task_complete = 0
 
         self.communicator.SIGNAL_LISTITEM_UPDATE.emit(\

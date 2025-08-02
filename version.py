@@ -18,14 +18,16 @@ DESCRIPTION = "loaded from db"
 # current code!
 VERSION = 1.06
 
+location = os.path.dirname(os.path.realpath(__file__))
+
 # name of db file
 DB_NAME = "-load-from-dbconfig.txt-"
-if not os.path.exists("./dbconfig.txt"):
+if not os.path.exists("{0}/{1}".format(location,"dbconfig.txt")):
     p = os.path.split(os.path.realpath(__file__).replace('\\', '/'))[0] + "/data.db"
     DB_NAME_STR = p
     DB_NAME = DB_NAME_STR
 else:
-    with open("dbconfig.txt", "r", newline=None) as e_file:
+    with open("{0}/{1}".format(location,"dbconfig.txt"), "r", newline=None) as e_file:
         DB_NAME_STR = e_file.readline().replace("\n", "")
         DB_NAME = DB_NAME_STR
 
@@ -71,10 +73,10 @@ else:
         ############################################\n
         """.format(str(VERSION), str(DB_VERSION))
 
-        with open("./DB_VERSION_ERROR.TXT", "w") as e_file:
+        with open("{0}/{1}".format(location,"DB_VERSION_ERROR.TXT", "w")) as e_file:
             e_file.write(ERROR_MSG)
 
         raise Exception(ERROR_MSG)
     else:
-        if os.path.isfile("./DB_VERSION_ERROR.TXT"):
-            os.remove("./DB_VERSION_ERROR.TXT")
+        if os.path.isfile("{0}/{1}".format(location,"DB_VERSION_ERROR.TXT")):
+            os.remove("{0}/{1}".format(location,"DB_VERSION_ERROR.TXT"))

@@ -3,6 +3,7 @@ Module offers a todo list with movable tasks
 """
 
 from datetime import datetime, date
+import os
 from PyQt6.QtWidgets import QWidget, QDialog
 from PyQt6.QtWidgets import QHBoxLayout, QVBoxLayout, QPushButton
 from PyQt6.QtWidgets import QLineEdit, QLabel
@@ -95,6 +96,8 @@ class FunctionalBar(QWidget):
 
     def __init__(self, width, height, communicator, context, parent):
         super().__init__(parent=parent)
+        location = os.path.dirname(os.path.realpath(__file__))
+        img_location = "{0}/img".format(location )
         self.parent = parent
         self.communicator = communicator
         self.context = context
@@ -109,13 +112,13 @@ class FunctionalBar(QWidget):
         add_button = QPushButton()
         add_button.setFixedSize(height, height)
         add_button.setIconSize(QSize(height-2, height-2))
-        add_button.setIcon(QIcon("./img/additem.png"))
+        add_button.setIcon(QIcon("{0}/{1}".format(img_location,"additem.png")))
         add_button.setStyleSheet("border: 0px;")
 
         clean_button = QPushButton()
         clean_button.setFixedSize(height, height)
         clean_button.setIconSize(QSize(height-2, height-2))
-        clean_button.setIcon(QIcon("./img/removefinishedtasks.png"))
+        clean_button.setIcon(QIcon("{0}/{1}".format(img_location,"removefinishedtasks.png")))
         clean_button.setStyleSheet("border: 0px;")
 
         new_font = QFont("MS Shell Dlg 2", 12)
